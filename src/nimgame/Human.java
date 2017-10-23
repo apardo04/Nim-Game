@@ -38,7 +38,10 @@ public class Human implements Player {
         int remove = 0;
         while (remove < 1 || remove > pile/2) {
             System.out.println("How many marbles do you want to remove?");
-            remove = reader.nextInt();
+            if (reader.hasNextInt())
+                remove = reader.nextInt();
+            else
+                reader.next();
         }
         return remove;
     }

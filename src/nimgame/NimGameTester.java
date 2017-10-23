@@ -31,13 +31,19 @@ public class NimGameTester {
             while (userOrder < 1 || userOrder > 2) {   // Keep looping until proper input
                 System.out.println("\nDo you want to go first or second? "
                         + "Enter 1 or 2:");
-                userOrder = reader.nextInt();          // Storing user choice of order
+                if (reader.hasNextInt())               // Checking for valid input
+                    userOrder = reader.nextInt();      // Storing user choice of order   
+                else 
+                    reader.next();
             }
             while (computer < 1 || computer > 2) {     // Keep looping until proper input
                 System.out.println("\nChoose Difficulty:"
                         + "\nEasy Mode(Enter 1):"
                         + "\nHard Mode(Enter 2):");
-                computer = reader.nextInt();           // Storing user choice of difficulty
+                if (reader.hasNextInt())                // Checking for valid input
+                    computer = reader.nextInt();        // Storing user choice of difficulty
+                else
+                    reader.next();
             }
             Pile pile = new Pile();                    // Creating Pile Object
             Human human = new Human(userName);         // Creating Human Object & passing users name
@@ -57,9 +63,9 @@ public class NimGameTester {
                     nim.play(smart,human,pile);
             }
             System.out.println("\nPress 1 to play again"
-                    + "\nAnything else to exit");
-            // Ternary operator to see if user wants to play again
-            playAgain = (reader.nextInt() == 1) ?   true: false;    
+                    + "\nOr anything else to exit");
+            // Ternary operator to see if user wants to play again and checks for valid input
+            playAgain = (reader.hasNextInt() && reader.nextInt() == 1) ?   true: false;    
         }
     }
 }
